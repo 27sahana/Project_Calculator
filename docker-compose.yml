@@ -1,0 +1,22 @@
+version: '3'
+services:
+  calculator:
+    image: psahana27/calculator:latest
+    container_name: calculator_1
+    ports:
+      - "8084:8081"  # Keep one replica on port 8081
+    environment:
+      - SPRING_PROFILES_ACTIVE=production
+    deploy:
+      replicas: 1  # Keep one replica with the original port
+
+  calculator2:
+    image: psahana27/calculator:latest
+    container_name: calculator_2
+    ports:
+      - "8085:8081"  # Use a different port (8085) for the second replica
+    environment:
+      - SPRING_PROFILES_ACTIVE=production
+    deploy:
+      replicas: 1  # Keep one replica with the different port
+
